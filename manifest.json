@@ -1,0 +1,10 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
+  "author": "PulseLane",
+  "description": "Shortens the \"level failed\" fadeout",
+  "gameVersion": "1.8.0",
+  "id": "FastFail",
+  "name": "FastFail",
+  "version": "0.1.0-alpha",
+  "features": []
+}
