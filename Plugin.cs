@@ -17,7 +17,6 @@ namespace FastFail
         {
             Harmony.DEBUG = true;
             Logger.log = logger;
-            Logger.Log("Logging", LogLevel.Debug);
         }
 
         [OnStart]
@@ -27,14 +26,13 @@ namespace FastFail
             try
             {
                 harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
-                Logger.Log(":)");
+                Logger.Log("Successfully applied Harmony Patches");
             }
             catch (Exception ex)
             {
                 Logger.Log($"Failed to apply harmony patches! {ex}", LogLevel.Error);
             }
 
-            Logger.Log("TESTING!");
         }
 
         [OnExit]

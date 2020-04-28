@@ -8,7 +8,6 @@ using System.Reflection;
 
 namespace FastFail.HarmonyPatches
 {
-    [HarmonyDebug]
     [HarmonyPatch]
     class LevelFailedPatcher
     {
