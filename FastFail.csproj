@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarmonyPatches\LevelFailedPatcher.cs" />
+    <Compile Include="HarmonyPatches\MissionFailedPatcher.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="PluginConfig.cs" />

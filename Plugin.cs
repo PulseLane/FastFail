@@ -15,7 +15,6 @@ namespace FastFail
         [Init]
         public void Init(IPALogger logger)
         {
-            Harmony.DEBUG = true;
             Logger.log = logger;
         }
 
@@ -26,7 +25,7 @@ namespace FastFail
             try
             {
                 harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
-                Logger.Log("Successfully applied Harmony Patches");
+                Logger.Log("Successfully applied Harmony Patches!");
             }
             catch (Exception ex)
             {
