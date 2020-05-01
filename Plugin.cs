@@ -1,17 +1,16 @@
-﻿using HarmonyLib;
+﻿using BS_Utils;
 using IPA;
 using IPALogger = IPA.Logging.Logger;
 using LogLevel = IPA.Logging.Logger.Level;
 using System;
 using System.Reflection;
+using UnityEngine;
 
 namespace FastFail
 {
     [Plugin(RuntimeOptions.SingleStartInit)]
     public class Plugin
     {
-        internal static Harmony harmony;
-
         [Init]
         public void Init(IPALogger logger)
         {
@@ -21,23 +20,18 @@ namespace FastFail
         [OnStart]
         public void OnStart()
         {
-            harmony = new Harmony("com.PulseLane.BeatSaber.FastFail");
-            try
-            {
-                harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
-                Logger.Log("Successfully applied Harmony Patches!");
-            }
-            catch (Exception ex)
-            {
-                Logger.Log($"Failed to apply harmony patches! {ex}", LogLevel.Error);
-            }
 
+            BS_Utils.Utilities.BSEvents.gameSceneLoaded += OnGameSceneLoaded;
+        }
+
+        private void OnGameSceneLoaded()
+        {
+            new GameObject("FailSkip Behavior").AddComponent<FailSkip>();
         }
 
         [OnExit]
         public void OnExit()
         {
-             harmony.UnpatchAll("com.PulseLane.BeatSaber.FastFail");
         }
     }
 }
