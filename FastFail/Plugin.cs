@@ -20,7 +20,6 @@ namespace FastFail
         [OnStart]
         public void OnStart()
         {
-
             BS_Utils.Utilities.BSEvents.gameSceneLoaded += OnGameSceneLoaded;
         }
 
