@@ -18,6 +18,8 @@ namespace FastFail
         protected MissionObjectiveCheckersManager _missionObjectiveCheckersManager;
         protected PrepareLevelCompletionResults _prepareLevelCompletionResults;
 
+        protected VRControllersInputManager _vrControllersInputManager;
+
         protected bool _standardLevel;
         protected bool _hasFailed = false;
 
@@ -54,6 +56,9 @@ namespace FastFail
                 _missionObjectiveCheckersManager = _missionLevelFailedController.GetField<MissionObjectiveCheckersManager, MissionLevelFailedController>("_missionObjectiveCheckersManager");
                 _prepareLevelCompletionResults = _missionLevelFailedController.GetField<PrepareLevelCompletionResults, MissionLevelFailedController>("_prepareLevelCompletionResults");
             }
+
+            _vrControllersInputManager = Resources.FindObjectsOfTypeAll<PauseMenuManager>().FirstOrDefault()
+                                            .GetField<VRControllersInputManager, PauseMenuManager>("_vrControllersInputManager");
         }
 
         public void OnLevelFail()
@@ -63,8 +68,7 @@ namespace FastFail
 
         public void Update()
         {
-            if (_hasFailed &&
-               (Input.GetButtonDown("MenuButtonLeftHand") | Input.GetButtonDown("MenuButtonRightHand")))
+            if (_hasFailed && _vrControllersInputManager.MenuButtonDown())
             {
                 Logger.Log("pause button pressed during fail!");
 
@@ -88,7 +92,5 @@ namespace FastFail
                 }
             }
         }
-
-        
     }
 }
