@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "PulseLane",
-  "description": "Allows the player to skip the \"Level Failed\" effect",
+  "description": "Speeds up the \"Level Failed\" animation by ~2s.",
   "gameVersion": "1.8.0",
   "id": "FastFail",
   "name": "FastFail",
