@@ -1,9 +1,7 @@
-﻿using BS_Utils;
+﻿using BeatSaberMarkupLanguage.Settings;
+using FastFail.UI;
 using IPA;
 using IPALogger = IPA.Logging.Logger;
-using LogLevel = IPA.Logging.Logger.Level;
-using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace FastFail
@@ -20,7 +18,9 @@ namespace FastFail
         [OnStart]
         public void OnStart()
         {
+            Config.Read();
             BS_Utils.Utilities.BSEvents.gameSceneLoaded += OnGameSceneLoaded;
+            BSMLSettings.instance.AddSettingsMenu("FastFail", "FastFail.UI.settings.bsml", Settings.instance);
         }
 
         private void OnGameSceneLoaded()

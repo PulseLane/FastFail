@@ -22,20 +22,18 @@ namespace FastFail
 
         protected bool _standardLevel;
         protected bool _hasFailed = false;
+        protected bool autoSkip;
 
         public void Awake()
         {
-            Logger.Log("Awakening");
             _standardLevelGameplayManager = Resources.FindObjectsOfTypeAll<StandardLevelGameplayManager>().FirstOrDefault();
             if (_standardLevelGameplayManager)
             {
                 _standardLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
                 _standardLevel = true;
-                Logger.Log("Standard");
             }
             else
             {
-                Logger.Log("Mission");
                 _missionLevelGameplayManager = Resources.FindObjectsOfTypeAll<MissionLevelGameplayManager>().FirstOrDefault();
                 _missionLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
                 _standardLevel = false;
@@ -59,6 +57,8 @@ namespace FastFail
 
             _vrControllersInputManager = Resources.FindObjectsOfTypeAll<PauseMenuManager>().FirstOrDefault()
                                             .GetField<VRControllersInputManager, PauseMenuManager>("_vrControllersInputManager");
+
+            autoSkip = Config.autoSkip;
         }
 
         public void OnLevelFail()
@@ -68,10 +68,8 @@ namespace FastFail
 
         public void Update()
         {
-            if (_hasFailed && _vrControllersInputManager.MenuButtonDown())
+            if (_hasFailed && (autoSkip || _vrControllersInputManager.MenuButtonDown()))
             {
-                Logger.Log("pause button pressed during fail!");
-
                 if (_standardLevel)
                 {
                     _standardLevelFailedController.StopAllCoroutines();

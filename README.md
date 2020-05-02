@@ -1,7 +1,4 @@
 # FastFail
 Beat Saber mod to make failing a song not take as long
 
-Desired features before 1.0 release:
-  * ~~Skip fail animation via button press~~
-  * ~~Support skipping mission fail~~
-  * Option to toggle between auto and manual skip
+By default, you must press the menu (pause) button to skip the fail animation, but there is an option to enable auto-skipping.
