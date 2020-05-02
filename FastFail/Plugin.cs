@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace FastFail
 {
-    [Plugin(RuntimeOptions.SingleStartInit)]
+    [Plugin(RuntimeOptions.DynamicInit)]
     public class Plugin
     {
         [Init]
@@ -15,22 +15,26 @@ namespace FastFail
             Logger.log = logger;
         }
 
-        [OnStart]
-        public void OnStart()
+        [OnEnable]
+        public void OnEnable()
         {
             Config.Read();
             BS_Utils.Utilities.BSEvents.gameSceneLoaded += OnGameSceneLoaded;
             BSMLSettings.instance.AddSettingsMenu("FastFail", "FastFail.UI.settings.bsml", Settings.instance);
         }
 
-        private void OnGameSceneLoaded()
+        [OnDisable]
+        public void OnDisable()
         {
-            new GameObject("FailSkip Behavior").AddComponent<FailSkip>();
+            BS_Utils.Utilities.BSEvents.gameSceneLoaded -= OnGameSceneLoaded;
+            BSMLSettings.instance.RemoveSettingsMenu(Settings.instance);
         }
 
-        [OnExit]
-        public void OnExit()
+
+        private void OnGameSceneLoaded()
         {
+            if (Config.enabled)
+                new GameObject("FailSkip Behavior").AddComponent<FailSkip>();
         }
     }
 }

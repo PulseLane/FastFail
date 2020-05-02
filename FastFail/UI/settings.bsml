@@ -1,3 +1,4 @@
 ﻿<settings-container>
+  <checkbox text='Enabled' value='enabled'></checkbox>
   <checkbox text='Auto Skip' value='autoSkip' hover-hint='If disabled, you will have to press the menu (pause) button to skip the fail animation'></checkbox>
 </settings-container>
