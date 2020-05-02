@@ -22,6 +22,7 @@ namespace FastFail
 
         protected bool _standardLevel;
         protected bool _hasFailed = false;
+        protected bool _skipped = false;
         protected bool autoSkip;
 
         public void Awake()
@@ -68,7 +69,7 @@ namespace FastFail
 
         public void Update()
         {
-            if (_hasFailed && (autoSkip || _vrControllersInputManager.MenuButtonDown()))
+            if (_hasFailed && (autoSkip || _vrControllersInputManager.MenuButtonDown()) && !_skipped)
             {
                 if (_standardLevel)
                 {
@@ -88,6 +89,8 @@ namespace FastFail
 
                     _missionLevelSceneSetupData.Finish(missionCompletionReuslts);
                 }
+
+                _skipped = true;
             }
         }
     }
