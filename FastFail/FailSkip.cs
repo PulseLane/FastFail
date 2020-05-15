@@ -6,6 +6,7 @@ namespace FastFail
 {
     class FailSkip : MonoBehaviour
     {
+        // Standard and mission use different failure controllers
         protected StandardLevelGameplayManager _standardLevelGameplayManager;
         protected MissionLevelGameplayManager _missionLevelGameplayManager;
         protected StandardLevelFailedController _standardLevelFailedController;
@@ -28,6 +29,7 @@ namespace FastFail
         public void Awake()
         {
             _standardLevelGameplayManager = Resources.FindObjectsOfTypeAll<StandardLevelGameplayManager>().FirstOrDefault();
+            // Use the appropriate level failed event
             if (_standardLevelGameplayManager)
             {
                 _standardLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
@@ -40,6 +42,7 @@ namespace FastFail
                 _standardLevel = false;
             }
 
+            // Get all the necessary fields
             _standardLevelFailedController = Resources.FindObjectsOfTypeAll<StandardLevelFailedController>().FirstOrDefault();
             if (_standardLevelFailedController)
             {
@@ -71,6 +74,7 @@ namespace FastFail
         {
             if (_hasFailed && (autoSkip || _vrControllersInputManager.MenuButtonDown()) && !_skipped)
             {
+                // Stop the base coroutine and call the necessary functions to fail the level as quickly as possible
                 if (_standardLevel)
                 {
                     _standardLevelFailedController.StopAllCoroutines();
