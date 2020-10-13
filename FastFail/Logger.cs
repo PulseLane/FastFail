@@ -1,4 +1,5 @@
 ﻿using IPALogger = IPA.Logging.Logger;
+using LogLevel = IPA.Logging.Logger.Level;
 
 namespace FastFail
 {
