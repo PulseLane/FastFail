@@ -43,15 +43,12 @@
     <DisableZipRelease>True</DisableZipRelease>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
     <Compile Include="FailSkip.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Configuration\PluginConfig.cs" />
-    <Compile Include="FastFailController.cs" />
-    <Compile Include="PluginConfig.cs" />
+    <Compile Include="Settings\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Settings.cs" />
+    <Compile Include="Settings\SettingsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="manifest.json" />
@@ -59,9 +56,17 @@
   <ItemGroup>
     <None Include="BuildTargets.targets" />
     <None Include=".gitignore" />
-    <None Include="UI\settings.bsml" />
+    <EmbeddedResource Include="Settings\settings.bsml" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="BSML, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Documents\Beat Saber\1.11.1\Beat Saber\Plugins\BSML.dll</HintPath>
+    </Reference>
+    <Reference Include="BS_Utils, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\Steam\steamapps\common\Beat Saber\Plugins\BS_Utils.dll</HintPath>
+    </Reference>
     <Reference Include="GameplayCore">
       <HintPath>F:\Steam\steamapps\common\Beat Saber\Beat Saber_Data\Managed\GameplayCore.dll</HintPath>
     </Reference>

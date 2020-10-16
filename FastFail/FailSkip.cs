@@ -1,4 +1,5 @@
-﻿using IPA.Utilities;
+﻿using FastFail.Settings;
+using IPA.Utilities;
 using System.Linq;
 using UnityEngine;
 
@@ -24,19 +25,21 @@ namespace FastFail
         protected bool _standardLevel;
         protected bool _hasFailed = false;
         protected bool _skipped = false;
-        protected bool autoSkip;
 
         public void Awake()
         {
+            Logger.log.Debug("awaken");
             _standardLevelGameplayManager = Resources.FindObjectsOfTypeAll<StandardLevelGameplayManager>().FirstOrDefault();
             // Use the appropriate level failed event
             if (_standardLevelGameplayManager)
             {
+                Logger.log.Debug("Standard");
                 _standardLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
                 _standardLevel = true;
             }
             else
             {
+                Logger.log.Debug("Mission");
                 _missionLevelGameplayManager = Resources.FindObjectsOfTypeAll<MissionLevelGameplayManager>().FirstOrDefault();
                 _missionLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
                 _standardLevel = false;
@@ -61,8 +64,6 @@ namespace FastFail
 
             _vrControllersInputManager = Resources.FindObjectsOfTypeAll<PauseMenuManager>().FirstOrDefault()
                                             .GetField<VRControllersInputManager, PauseMenuManager>("_vrControllersInputManager");
-
-            autoSkip = Config.autoSkip;
         }
 
         public void OnLevelFail()
@@ -72,7 +73,9 @@ namespace FastFail
 
         public void Update()
         {
-            if (_hasFailed && (autoSkip || _vrControllersInputManager.MenuButtonDown()) && !_skipped)
+            if (_vrControllersInputManager.MenuButtonDown())
+                Logger.log.Debug("Menu down");
+            if (_hasFailed && (Configuration.Instance.autoSkip || _vrControllersInputManager.MenuButtonDown()) && !_skipped)
             {
                 // Stop the base coroutine and call the necessary functions to fail the level as quickly as possible
                 if (_standardLevel)
