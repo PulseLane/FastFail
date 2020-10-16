@@ -28,18 +28,15 @@ namespace FastFail
 
         public void Awake()
         {
-            Logger.log.Debug("awaken");
             _standardLevelGameplayManager = Resources.FindObjectsOfTypeAll<StandardLevelGameplayManager>().FirstOrDefault();
             // Use the appropriate level failed event
             if (_standardLevelGameplayManager)
             {
-                Logger.log.Debug("Standard");
                 _standardLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
                 _standardLevel = true;
             }
             else
             {
-                Logger.log.Debug("Mission");
                 _missionLevelGameplayManager = Resources.FindObjectsOfTypeAll<MissionLevelGameplayManager>().FirstOrDefault();
                 _missionLevelGameplayManager.levelFailedEvent += this.OnLevelFail;
                 _standardLevel = false;
@@ -73,8 +70,6 @@ namespace FastFail
 
         public void Update()
         {
-            if (_vrControllersInputManager.MenuButtonDown())
-                Logger.log.Debug("Menu down");
             if (_hasFailed && (Configuration.Instance.autoSkip || _vrControllersInputManager.MenuButtonDown()) && !_skipped)
             {
                 // Stop the base coroutine and call the necessary functions to fail the level as quickly as possible

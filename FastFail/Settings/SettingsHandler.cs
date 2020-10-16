@@ -10,7 +10,6 @@ namespace FastFail.Settings
             get => Configuration.Instance.enabled;
             set
             {
-                Logger.log.Debug($"{value}");
                 Configuration.Instance.enabled = value;
             }
         }
