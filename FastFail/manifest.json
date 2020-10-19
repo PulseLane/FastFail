@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "PulseLane",
   "description": "Speeds up the \"Level Failed\" animation by ~2s.",
-  "gameVersion": "1.12.1",
+  "gameVersion": "1.12.2",
   "id": "FastFail",
   "name": "FastFail",
   "version": "2.0.0",
