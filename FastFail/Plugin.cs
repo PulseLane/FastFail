@@ -34,7 +34,7 @@ namespace FastFail
 
         private void OnGameSceneLoaded()
         {
-            if (Configuration.Instance.enabled && !BS_Utils.Plugin.LevelData.Mode.Equals(BS_Utils.Gameplay.Mode.Multiplayer))
+            if (Configuration.Instance.enabled && !(BS_Utils.Plugin.LevelData.Mode.Equals(BS_Utils.Gameplay.Mode.Multiplayer) || BS_Utils.Plugin.LevelData.Mode.Equals(BS_Utils.Gameplay.Mode.None)))
             {
                 new GameObject("FailSkip Behavior").AddComponent<FailSkip>();
             }
