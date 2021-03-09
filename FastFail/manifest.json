@@ -2,13 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "PulseLane",
   "description": "Speeds up the \"Level Failed\" animation by ~2s.",
-  "gameVersion": "1.13.2",
+  "gameVersion": "1.13.4",
   "id": "FastFail",
   "name": "FastFail",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "dependsOn": {
-    "BeatSaberMarkupLanguage": "^1.4.5",
-    "BS Utils": "^1.7.0",
+    "BeatSaberMarkupLanguage": "^1.5.0",
+    "BS Utils": "^1.8.0",
     "BSIPA": "^4.1.4"
   },
   "features": [],
